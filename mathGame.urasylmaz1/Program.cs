@@ -17,8 +17,8 @@ while (true)
     switch (choice)
     {
         case 1:
-            int num1 = random.Next(1, 100);
-            int num2 = random.Next(1, 100);
+            int num1 = random.Next(0, 100);
+            int num2 = random.Next(0, 100);
             char operation = '+';
             int result = num1 + num2;
             DisplayQuestion($"{num1} + {num2}");
@@ -28,8 +28,8 @@ while (true)
             DisplayScore(score);
             break;
         case 2:
-            num1 = random.Next(1, 100);
-            num2 = random.Next(1, 100);
+            num1 = random.Next(0, 100);
+            num2 = random.Next(0, 100);
             operation = '-';
             result = num1 - num2;
             DisplayQuestion($"{num1} - {num2}");
@@ -39,8 +39,8 @@ while (true)
             DisplayScore(score);
             break;
         case 3:
-            num1 = random.Next(1, 100);
-            num2 = random.Next(1, 100);
+            num1 = random.Next(0, 100);
+            num2 = random.Next(0, 100);
             operation = '*';
             result = num1 * num2;
             DisplayQuestion($"{num1} * {num2}");
@@ -50,10 +50,14 @@ while (true)
             DisplayScore(score);
             break;
         case 4:
-            num1 = random.Next(1, 100);
-            num2 = random.Next(1, 100);
+            do
+            {
+                num1 = random.Next(0, 100);
+                num2 = random.Next(0, 100);
+            } while (num2 == 0 || num1 % num2 != 0);
+           
             operation = '/';
-            result = num2 != 0 ? num1 / num2 : 0; // Avoid division by zero
+            result = num1 / num2;
             DisplayQuestion($"{num1} / {num2}");
             AddToHistory(operation.ToString(), num1, num2, result);
             userAnswer = ReadInt();
